@@ -1,1 +1,2 @@
-require("core_init")
+require("dayem.core")
+require("dayem.lazy")
