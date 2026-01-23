@@ -47,7 +47,6 @@ return {
         "stylua",
         "gofumpt",
         "goimports",
-        "black",
         "pint",
         "eslint_d",
         "golangci-lint",

@@ -6,6 +6,10 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
+  cmd = "Neotree",
+  keys = {
+    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle Neo-tree" },
+  },
   config = function()
     require("neo-tree").setup({
       window = {
@@ -16,7 +20,7 @@ return {
         follow_current_file = {
           enabled = true,
         },
-        hijack_netrw_behavior = "open_current",
+        hijack_netrw_behavior = "disabled",
       },
     })
   end,

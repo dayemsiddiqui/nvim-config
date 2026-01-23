@@ -8,6 +8,27 @@ function M.get_capabilities()
     capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
   end
 
+  capabilities.textDocument.semanticTokens = {
+    dynamicRegistration = false,
+    requests = {
+      range = true,
+      full = {
+        delta = true
+      }
+    },
+    tokenTypes = {
+      'namespace', 'type', 'class', 'enum', 'interface', 'struct',
+      'typeParameter', 'parameter', 'variable', 'property', 'enumMember',
+      'event', 'function', 'method', 'macro', 'keyword', 'modifier',
+      'comment', 'string', 'number', 'regexp', 'operator'
+    },
+    tokenModifiers = {
+      'declaration', 'definition', 'readonly', 'static', 'deprecated',
+      'abstract', 'async', 'modification', 'documentation', 'defaultLibrary'
+    },
+    formats = { 'relative' }
+  }
+
   return capabilities
 end
 

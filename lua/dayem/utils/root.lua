@@ -2,7 +2,7 @@ local M = {}
 
 function M.project_root()
   -- 1. LSP root
-  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
   for _, client in ipairs(clients) do
     if client.config.root_dir then
       return client.config.root_dir

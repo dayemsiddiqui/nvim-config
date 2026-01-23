@@ -48,8 +48,35 @@ vim.keymap.set("n", "<leader>tp", "<cmd>BufferLineCyclePrev<CR>") -- go to pre
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") -- open current file in new tab
 
 -- split
-vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-vim.keymap.set("n", "<leader>sh", "<C-w>h", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<leader>sv", function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  vim.cmd("vsplit")
+  vim.api.nvim_set_current_buf(current_buf)
+  vim.cmd("wincmd p")
+
+  pcall(vim.cmd, "BufferLineCyclePrev")
+  if vim.api.nvim_get_current_buf() == current_buf then
+    pcall(vim.cmd, "BufferLineCycleNext")
+    if vim.api.nvim_get_current_buf() == current_buf then
+      vim.cmd("enew")
+    end
+  end
+end, { desc = "Move buffer to vertical split" })
+
+vim.keymap.set("n", "<leader>sh", function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  vim.cmd("split")
+  vim.api.nvim_set_current_buf(current_buf)
+  vim.cmd("wincmd p")
+
+  pcall(vim.cmd, "BufferLineCyclePrev")
+  if vim.api.nvim_get_current_buf() == current_buf then
+    pcall(vim.cmd, "BufferLineCycleNext")
+    if vim.api.nvim_get_current_buf() == current_buf then
+      vim.cmd("enew")
+    end
+  end
+end, { desc = "Move buffer to horizontal split" })
 vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make split equal size" })
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close the current split" })
 vim.keymap.set('n', '<leader>sn', '<C-w>wgg0', { desc = 'Next split' })                                                                                                               
