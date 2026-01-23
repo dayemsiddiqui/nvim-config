@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(
     {
         { import = "dayem.plugins" },
+        { import = "dayem.plugins.lsp" },
     },
     {
         checker = {
