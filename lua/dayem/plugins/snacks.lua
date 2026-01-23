@@ -148,6 +148,7 @@ return {
         keys = {
             { "<leader>lg", function() require("snacks").lazygit() end, desc = "Lazygit" },
             { "<leader>gl", function() require("snacks").lazygit.log() end, desc = "Lazygit Logs" },
+            { "<leader>k8", function() require("snacks").terminal("k9s") end, desc = "K9s (Kubernetes)" },
             { "<leader>rN", function() require("snacks").rename.rename_file() end, desc = "Fast Rename Current File" },
             { "<leader>dB", function() require("snacks").bufdelete() end, desc = "Delete or Close Buffer  (Confirm)" },
 
