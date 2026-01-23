@@ -103,3 +103,66 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+vim.keymap.set("n", "<leader>gha", function()
+  local github = require("dayem.utils.github")
+  local accounts = github.list_accounts()
+
+  if #accounts == 0 then
+    vim.notify("No GitHub accounts authenticated. Run 'gh auth login'", vim.log.levels.WARN)
+    return
+  end
+
+  vim.ui.select(accounts, {
+    prompt = "Select GitHub Account:",
+    format_item = function(item)
+      return item.username
+    end,
+  }, function(choice)
+    if choice then
+      github.switch_account(choice.username)
+    end
+  end)
+end, { desc = "Switch GitHub Account" })
+
+vim.keymap.set("n", "<leader>ghs", function()
+  local github = require("dayem.utils.github")
+  local account = github.get_current_account()
+
+  if account then
+    vim.notify(" GitHub: " .. account.username, vim.log.levels.INFO)
+  else
+    vim.notify("No GitHub account authenticated", vim.log.levels.WARN)
+  end
+end, { desc = "Show GitHub Account Status" })
+
+vim.keymap.set("n", "<leader>ght", function()
+  vim.g.github_auto_switch = not vim.g.github_auto_switch
+  local status = vim.g.github_auto_switch and "enabled" or "disabled"
+  vim.notify("GitHub auto-switch " .. status, vim.log.levels.INFO)
+end, { desc = "Toggle GitHub Auto-Switch" })
+
+vim.keymap.set("n", "<leader>ghr", function()
+  local github = require("dayem.utils.github")
+  local accounts = github.list_accounts()
+
+  if #accounts == 0 then
+    vim.notify("No GitHub accounts authenticated. Run 'gh auth login'", vim.log.levels.WARN)
+    return
+  end
+
+  vim.ui.select(accounts, {
+    prompt = "Register current project with account:",
+    format_item = function(item)
+      return item.username
+    end,
+  }, function(choice)
+    if choice then
+      github.register_project(choice.username)
+    end
+  end)
+end, { desc = "Register Project with GitHub Account" })
+
+vim.keymap.set("n", "<leader>ghu", function()
+  require("dayem.utils.github").unregister_project()
+end, { desc = "Unregister Project GitHub Account" })
+

@@ -101,7 +101,23 @@ return {
           },
           "filetype",
         },
-        lualine_y = {},
+        lualine_y = {
+          {
+            function()
+              local github = require("dayem.utils.github")
+              local account = github.get_current_account()
+              if account then
+                return " " .. account.username
+              end
+              return ""
+            end,
+            cond = function()
+              local github = require("dayem.utils.github")
+              return github.get_current_account() ~= nil
+            end,
+            color = { fg = colors.color5 },
+          },
+        },
         lualine_z = {},
       },
       inactive_sections = {
