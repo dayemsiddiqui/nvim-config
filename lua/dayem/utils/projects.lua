@@ -100,6 +100,44 @@ function M.add_current_project(name)
   end
 end
 
+function M.delete_project(name)
+  local dynamic_projects = M.load_dynamic_projects()
+  local found_index = nil
+
+  for i, project in ipairs(dynamic_projects) do
+    if project.name == name then
+      found_index = i
+      break
+    end
+  end
+
+  if not found_index then
+    vim.notify("Project not found: " .. name, vim.log.levels.ERROR)
+    return false
+  end
+
+  table.remove(dynamic_projects, found_index)
+
+  if M.save_dynamic_projects(dynamic_projects) then
+    vim.notify("Project '" .. name .. "' deleted successfully", vim.log.levels.INFO)
+    return true
+  end
+
+  return false
+end
+
+function M.get_dynamic_project_items()
+  local items = {}
+  for _, project in ipairs(M.load_dynamic_projects()) do
+    table.insert(items, {
+      text = project.name,
+      path = vim.fn.expand(project.path),
+      name = project.name,
+    })
+  end
+  return items
+end
+
 function M.get_projects()
   local items = {}
   for _, project in ipairs(M.get_all_projects()) do

@@ -12,6 +12,38 @@ return {
   },
   config = function()
     require("neo-tree").setup({
+      default_component_configs = {
+        icon = {
+          folder_closed = "",
+          folder_open = "",
+          folder_empty = "",
+          folder_empty_open = "",
+          default = "",
+          highlight = "NeoTreeFileIcon",
+        },
+        modified = {
+          symbol = "[+]",
+          highlight = "NeoTreeModified",
+        },
+        name = {
+          trailing_slash = false,
+          use_git_status_colors = true,
+          highlight = "NeoTreeFileName",
+        },
+        git_status = {
+          symbols = {
+            added     = "✚",
+            deleted   = "✖",
+            modified  = "",
+            renamed   = "󰁕",
+            untracked = "",
+            ignored   = "",
+            unstaged  = "󰄱",
+            staged    = "",
+            conflict  = "",
+          },
+        },
+      },
       window = {
         position = "left",
         width = 32,
