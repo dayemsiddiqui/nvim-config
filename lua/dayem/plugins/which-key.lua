@@ -63,6 +63,14 @@ return {
       { "<leader>tp", desc = "Previous Buffer" },
       { "<leader>tf", desc = "Open Current File in New Tab" },
 
+      { "<leader>x", group = "Trouble/Diagnostics" },
+      { "<leader>xx", desc = "Diagnostics (Trouble)" },
+      { "<leader>xX", desc = "Buffer Diagnostics (Trouble)" },
+      { "<leader>xs", desc = "Symbols (Trouble)" },
+      { "<leader>xl", desc = "LSP Definitions/References (Trouble)" },
+      { "<leader>xL", desc = "Location List (Trouble)" },
+      { "<leader>xQ", desc = "Quickfix List (Trouble)" },
+
       { "<leader>gh", group = "GitHub" },
       { "<leader>gha", desc = "Switch Account" },
       { "<leader>ghs", desc = "Show Account Status" },
