@@ -44,6 +44,8 @@ return {
                 "java",
                 "rust",
                 "ron",
+                "php",
+                "blade",
             },
             auto_install = true,
             incremental_selection = {
@@ -60,7 +62,7 @@ return {
     {
         "windwp/nvim-ts-autotag",
         enabled = true,
-        ft = { "html", "xml", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte" },
+        ft = { "html", "xml", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "php", "blade" },
         config = function()
             require("nvim-ts-autotag").setup({
                 opts = {

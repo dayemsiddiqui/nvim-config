@@ -105,7 +105,7 @@ return {
 
     vim.lsp.config('intelephense', {
       cmd = { 'intelephense', '--stdio' },
-      filetypes = { 'php' },
+      filetypes = { 'php', 'blade' },
       root_markers = { 'composer.json', '.git' },
       settings = {
         intelephense = {
@@ -120,6 +120,40 @@ return {
           },
           files = {
             maxSize = 5000000,
+            associations = {
+              "*.php",
+              "*.blade.php",
+            },
+          },
+          format = {
+            enable = true,
+          },
+          completion = {
+            insertUseDeclaration = true,
+            fullyQualifyGlobalConstantsAndFunctions = false,
+            triggerParameterHints = true,
+            maxItems = 100,
+          },
+          diagnostics = {
+            enable = true,
+            run = "onType",
+            undefinedTypes = true,
+            undefinedFunctions = true,
+            undefinedConstants = true,
+            undefinedProperties = true,
+            undefinedMethods = true,
+          },
+          telemetry = {
+            enabled = false,
+          },
+          inlayHints = {
+            parameterNames = {
+              enabled = "all",
+              suppressNameMatchingValue = true,
+            },
+            typeHints = {
+              enabled = true,
+            },
           },
         },
       },

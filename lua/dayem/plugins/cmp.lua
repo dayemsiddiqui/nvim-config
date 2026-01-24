@@ -23,6 +23,7 @@ return {
     local lsp_utils = require("dayem.utils.lsp")
 
     require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/dayem/snippets" })
 
     local function in_snippet()
       return luasnip.session.current_nodes[vim.api.nvim_get_current_buf()] and true or false
