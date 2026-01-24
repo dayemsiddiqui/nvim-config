@@ -90,12 +90,12 @@ return {
       { "<leader>pn", desc = "Add Namespace" },
       { "<leader>pt", desc = "Run Test" },
 
-      { "<leader>pa", group = "PhpActor" },
-      { "<leader>paa", desc = "Context Menu" },
-      { "<leader>pan", desc = "New Class" },
-      { "<leader>pae", desc = "Extract Method", mode = "v" },
-      { "<leader>pai", desc = "Import Class" },
-      { "<leader>par", desc = "Rename" },
+      { "<leader>ph", group = "PhpActor" },
+      { "<leader>pha", desc = "Context Menu" },
+      { "<leader>phn", desc = "New Class" },
+      { "<leader>phe", desc = "Extract Method", mode = "v" },
+      { "<leader>phi", desc = "Import Class" },
+      { "<leader>phr", desc = "Rename" },
 
       { "<leader>Y", desc = "Yazi File Manager" },
 

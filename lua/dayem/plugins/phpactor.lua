@@ -6,11 +6,11 @@ return {
   },
   ft = { "php" },
   keys = {
-    { "<leader>paa", "<cmd>PhpActor context_menu<cr>", desc = "PhpActor Menu" },
-    { "<leader>pan", "<cmd>PhpActor new_class<cr>", desc = "PhpActor New Class" },
-    { "<leader>pae", "<cmd>PhpActor extract_method<cr>", mode = "v", desc = "Extract Method" },
-    { "<leader>pai", "<cmd>PhpActor import_class<cr>", desc = "Import Class" },
-    { "<leader>par", "<cmd>PhpActor rename<cr>", desc = "PhpActor Rename" },
+    { "<leader>pha", "<cmd>PhpActor context_menu<cr>", desc = "PhpActor Menu" },
+    { "<leader>phn", "<cmd>PhpActor new_class<cr>", desc = "PhpActor New Class" },
+    { "<leader>phe", "<cmd>PhpActor extract_method<cr>", mode = "v", desc = "Extract Method" },
+    { "<leader>phi", "<cmd>PhpActor import_class<cr>", desc = "Import Class" },
+    { "<leader>phr", "<cmd>PhpActor rename<cr>", desc = "PhpActor Rename" },
   },
   build = function()
     require("phpactor.handler.update")()
