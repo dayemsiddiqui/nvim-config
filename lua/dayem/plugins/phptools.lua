@@ -14,7 +14,9 @@ return {
   },
   config = function()
     require("phptools").setup({
-      ui = true,
+      ui = {
+        enable = true,
+      },
     })
   end,
 }
