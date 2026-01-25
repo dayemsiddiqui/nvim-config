@@ -97,6 +97,21 @@ return {
       { "<leader>phi", desc = "Import Class" },
       { "<leader>phr", desc = "Rename" },
 
+      { "<leader>r", group = "Run/Test" },
+      { "<leader>rr", desc = "Run Nearest Test" },
+      { "<leader>rf", desc = "Run All Tests in File" },
+      { "<leader>rs", desc = "Run Entire Test Suite" },
+      { "<leader>rl", desc = "Re-run Last Test" },
+      { "<leader>rd", desc = "Debug Nearest Test" },
+      { "<leader>ro", desc = "Show Test Output" },
+      { "<leader>rS", desc = "Toggle Test Summary" },
+      { "<leader>rw", desc = "Toggle Watch Mode" },
+      { "<leader>rx", desc = "Stop Running Tests" },
+      { "<leader>rp", desc = "Run Current Program" },
+      { "<leader>rP", desc = "Run Program (Floating)" },
+      { "<leader>ra", desc = "Smart Run (Auto-detect)" },
+      { "<leader>rt", desc = "Toggle Test/Source File" },
+
       { "<leader>Y", desc = "Yazi File Manager" },
 
       { "g", group = "Go to" },

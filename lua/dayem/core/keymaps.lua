@@ -166,3 +166,55 @@ vim.keymap.set("n", "<leader>ghu", function()
   require("dayem.utils.github").unregister_project()
 end, { desc = "Unregister Project GitHub Account" })
 
+vim.keymap.set("n", "<leader>rr", function()
+  require("neotest").run.run()
+end, { desc = "Run nearest test" })
+
+vim.keymap.set("n", "<leader>rf", function()
+  require("neotest").run.run(vim.fn.expand("%"))
+end, { desc = "Run all tests in file" })
+
+vim.keymap.set("n", "<leader>rs", function()
+  require("neotest").run.run(vim.fn.getcwd())
+end, { desc = "Run entire test suite" })
+
+vim.keymap.set("n", "<leader>rl", function()
+  require("neotest").run.run_last()
+end, { desc = "Re-run last test" })
+
+vim.keymap.set("n", "<leader>rd", function()
+  require("neotest").run.run({ strategy = "dap" })
+end, { desc = "Debug nearest test" })
+
+vim.keymap.set("n", "<leader>ro", function()
+  require("neotest").output.open({ enter = true, auto_close = true })
+end, { desc = "Show test output" })
+
+vim.keymap.set("n", "<leader>rS", function()
+  require("neotest").summary.toggle()
+end, { desc = "Toggle test summary" })
+
+vim.keymap.set("n", "<leader>rw", function()
+  require("neotest").watch.toggle(vim.fn.expand("%"))
+end, { desc = "Toggle watch mode" })
+
+vim.keymap.set("n", "<leader>rx", function()
+  require("neotest").run.stop()
+end, { desc = "Stop running tests" })
+
+vim.keymap.set("n", "<leader>rp", function()
+  require("dayem.utils.runner").run_program("horizontal")
+end, { desc = "Run current program" })
+
+vim.keymap.set("n", "<leader>rP", function()
+  require("dayem.utils.runner").run_program("float")
+end, { desc = "Run program in floating terminal" })
+
+vim.keymap.set("n", "<leader>ra", function()
+  require("dayem.utils.runner").smart_run("horizontal")
+end, { desc = "Smart run: test or program" })
+
+vim.keymap.set("n", "<leader>rt", function()
+  require("dayem.utils.runner").toggle_test_file()
+end, { desc = "Toggle between test and source" })
+
