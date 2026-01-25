@@ -1,7 +1,7 @@
 local M = {}
 
 local cache = { data = nil, timestamp = 0 }
-local CACHE_DURATION = 5
+local CACHE_DURATION = 300
 
 function M.get_current_account()
   local now = vim.loop.hrtime() / 1e9
@@ -9,21 +9,27 @@ function M.get_current_account()
     return cache.data
   end
 
-  local output = vim.fn.systemlist("gh auth status 2>&1")
-  if vim.v.shell_error ~= 0 then
-    return nil
-  end
+  local cached_data = cache.data
 
-  for _, line in ipairs(output) do
-    local username = line:match("Logged in to github%.com account (%S+)")
-    if username then
-      cache.data = { username = username }
-      cache.timestamp = now
-      return cache.data
-    end
-  end
+  vim.system(
+    { "gh", "auth", "status" },
+    { text = true },
+    vim.schedule_wrap(function(result)
+      if result.code == 0 then
+        for _, line in ipairs(vim.split(result.stdout or "", "\n")) do
+          local username = line:match("Logged in to github%.com account (%S+)")
+          if username then
+            cache.data = { username = username }
+            cache.timestamp = vim.loop.hrtime() / 1e9
+            require("lualine").refresh()
+            break
+          end
+        end
+      end
+    end)
+  )
 
-  return nil
+  return cached_data
 end
 
 function M.list_accounts()

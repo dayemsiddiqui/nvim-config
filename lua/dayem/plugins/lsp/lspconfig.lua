@@ -136,7 +136,7 @@ return {
           },
           diagnostics = {
             enable = true,
-            run = "onType",
+            run = "onSave",
             undefinedTypes = true,
             undefinedFunctions = true,
             undefinedConstants = true,
@@ -248,12 +248,6 @@ return {
       cmd = { 'prisma-language-server', '--stdio' },
       filetypes = { 'prisma' },
       root_markers = { 'package.json', '.git' },
-    })
-
-    vim.lsp.enable({
-      'lua_ls', 'ts_ls', 'gopls', 'rust_analyzer', 'pyright', 'intelephense',
-      'html', 'cssls', 'tailwindcss', 'jsonls', 'yamlls', 'bashls',
-      'dockerls', 'graphql', 'marksman', 'prismals',
     })
   end,
 }

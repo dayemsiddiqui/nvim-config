@@ -16,7 +16,7 @@ return {
             },
             -- Snacks Modules
             input = {
-                enabled = true,
+                enabled = false,
             },
             quickfile = {
                 enabled = true,
@@ -24,7 +24,7 @@ return {
             },
             -- HACK: read picker docs @ https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
             picker = {
-                enabled = true,
+                enabled = false,
                 matchers = {
                     frecency = true,
                     cwd_bonus = false,
@@ -109,9 +109,7 @@ return {
                 }
             },
             image = {
-                enabled = function()
-                    return vim.bo.filetype == "markdown"
-                end,
+                enabled = false,
                 doc = {
                     float = false, -- show image on cursor hover
                     inline = false, -- show image inline
@@ -128,7 +126,7 @@ return {
                 img_dirs = { "img", "images", "assets", "static", "public", "media", "attachments","Archives/All-Vault-Images/", "~/Library", "~/Downloads" },
             },
             dashboard = {
-                enabled = true,
+                enabled = false,
                 sections = {
                     { section = "header" },
                     { section = "keys", gap = 1, padding = 1 },
@@ -136,6 +134,24 @@ return {
                 },
             },
         },
+        init = function()
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "VeryLazy",
+                callback = function()
+                    local snacks = require("snacks")
+                    snacks.config.input.enabled = true
+                    snacks.config.picker.enabled = true
+                    snacks.config.dashboard.enabled = true
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "markdown",
+                callback = function()
+                    require("snacks").config.image.enabled = true
+                end,
+            })
+        end,
         -- NOTE: Keymaps
         keys = {
             { "<leader>lg", function() require("snacks").lazygit() end, desc = "Lazygit" },

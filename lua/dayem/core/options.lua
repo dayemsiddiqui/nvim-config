@@ -39,7 +39,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.opt.isfname:append("@-@")
-vim.opt.updatetime = 50
+vim.opt.updatetime = 300
 vim.opt.colorcolumn = "80"
 
 vim.opt.clipboard:append("unnamedplus")

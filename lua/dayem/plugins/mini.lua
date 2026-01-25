@@ -85,11 +85,16 @@ return {
             })
             vim.keymap.set("n", "<leader>cw", function() miniTrailspace.trim() end, { desc = "Erase Whitespace" })
 
-            -- Ensure highlight never reappears by removing it on CursorMoved
+            local trailspace_timer = nil
             vim.api.nvim_create_autocmd("CursorMoved", {
                 pattern = "*",
                 callback = function()
-                    require("mini.trailspace").unhighlight()
+                    if trailspace_timer then
+                        trailspace_timer:stop()
+                    end
+                    trailspace_timer = vim.defer_fn(function()
+                        require("mini.trailspace").unhighlight()
+                    end, 100)
                 end,
             })
         end,

@@ -10,7 +10,7 @@ return {
 
     local group = vim.api.nvim_create_augroup("GitHubCLI", { clear = true })
 
-    vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
+    vim.api.nvim_create_autocmd("DirChanged", {
       group = group,
       callback = function()
         vim.schedule(function()
