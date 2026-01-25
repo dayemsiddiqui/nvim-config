@@ -37,6 +37,7 @@ return {
         "graphql",
         "marksman",
         "prismals",
+        "terraformls",
       },
       automatic_installation = true,
     })

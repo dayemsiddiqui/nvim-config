@@ -218,6 +218,20 @@ return {
       cmd = { 'yaml-language-server', '--stdio' },
       filetypes = { 'yaml', 'yaml.docker-compose' },
       root_markers = { '.git' },
+      settings = {
+        yaml = {
+          schemas = {
+            kubernetes = "/*.yaml",
+            ["http://json.schemastore.org/kustomization"] = "kustomization.yaml",
+            ["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*",
+          },
+          format = {
+            enable = true,
+          },
+          validate = true,
+          completion = true,
+        },
+      },
     })
 
     vim.lsp.config('bashls', {
@@ -248,6 +262,12 @@ return {
       cmd = { 'prisma-language-server', '--stdio' },
       filetypes = { 'prisma' },
       root_markers = { 'package.json', '.git' },
+    })
+
+    vim.lsp.config('terraformls', {
+      cmd = { 'terraform-ls', 'serve' },
+      filetypes = { 'terraform', 'tf' },
+      root_markers = { '.terraform', '.git' },
     })
   end,
 }

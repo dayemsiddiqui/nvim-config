@@ -8,7 +8,7 @@ return {
   },
   cmd = "Neotree",
   keys = {
-    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle Neo-tree" },
+    { "<leader>e", "<cmd>Neotree toggle reveal<cr>", desc = "Toggle Neo-tree" },
   },
   config = function()
     require("neo-tree").setup({
@@ -51,8 +51,17 @@ return {
       filesystem = {
         follow_current_file = {
           enabled = true,
+          leave_dirs_open = false,
         },
         hijack_netrw_behavior = "disabled",
+      },
+      event_handlers = {
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function()
+            vim.cmd("setlocal relativenumber")
+          end,
+        },
       },
     })
   end,
