@@ -113,6 +113,11 @@ return {
       { "[d", desc = "Previous Diagnostic" },
 
       { "K", desc = "Hover Documentation", mode = "n" },
+
+      { "s", desc = "Flash Forward", mode = "n" },
+      { "S", desc = "Flash Treesitter", mode = { "n", "x" } },
+      { "r", desc = "Remote Flash", mode = "o" },
+      { "R", desc = "Treesitter Search", mode = "o" },
     })
   end,
 }
