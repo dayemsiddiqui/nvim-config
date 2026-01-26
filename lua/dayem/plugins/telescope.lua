@@ -46,6 +46,22 @@ return {
 			builtin.grep_string({ search = word })
 		end, { desc = "Find Connected Words under cursor" })
 
+		vim.keymap.set("v", "<leader>pWs", function()
+			local start_pos = vim.fn.getpos("'<")
+			local end_pos = vim.fn.getpos("'>")
+			local lines = vim.fn.getline(start_pos[2], end_pos[2])
+
+			if #lines == 1 then
+				lines[1] = string.sub(lines[1], start_pos[3], end_pos[3])
+			else
+				lines[1] = string.sub(lines[1], start_pos[3])
+				lines[#lines] = string.sub(lines[#lines], 1, end_pos[3])
+			end
+
+			local search_term = table.concat(lines, "\n")
+			builtin.grep_string({ search = search_term })
+		end, { desc = "Find visual selection" })
+
 		vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "Project search with live grep" })
 
 		vim.keymap.set("n", "<leader>ths", "<cmd>Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
