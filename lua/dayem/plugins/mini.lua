@@ -40,16 +40,18 @@ return {
 
             -- Module mappings. Use `''` (empty string) to disable one.
             -- INFO:
-            -- saiw surround with no whitespace
-            -- saw surround with whitespace
+            -- ysiw" add quotes around word
+            -- yss) add parens around line
+            -- ds" delete quotes
+            -- cs"' change quotes to single quotes
             mappings = {
-                add = 'sa',            -- Add surrounding in Normal and Visual modes
+                add = 'ys',            -- Add surrounding in Normal and Visual modes
                 delete = 'ds',         -- Delete surrounding
-                find = 'sf',           -- Find surrounding (to the right)
-                find_left = 'sF',      -- Find surrounding (to the left)
-                highlight = 'sh',      -- Highlight surrounding
-                replace = 'sr',        -- Replace surrounding
-                update_n_lines = 'sn', -- Update `n_lines`
+                find = '',             -- Disabled to avoid conflicts
+                find_left = '',        -- Disabled to avoid conflicts
+                highlight = '',        -- Disabled to avoid conflicts
+                replace = 'cs',        -- Replace surrounding
+                update_n_lines = '',   -- Disabled (rarely used)
 
                 suffix_last = 'l',     -- Suffix to search with "prev" method
                 suffix_next = 'n',     -- Suffix to search with "next" method
@@ -67,7 +69,7 @@ return {
             -- neighborhood). One of 'cover', 'cover_or_next', 'cover_or_prev',
             -- 'cover_or_nearest', 'next', 'prev', 'nearest'. For more details,
             -- see `:h MiniSurround.config`.
-            search_method = 'cover',
+            search_method = 'cover_or_nearest',
 
             -- Whether to disable showing non-error feedback
             silent = false,
