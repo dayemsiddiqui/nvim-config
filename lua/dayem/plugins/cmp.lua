@@ -153,6 +153,7 @@ return {
           },
           before = function(entry, vim_item)
             vim_item.menu = ({
+              orgmode = "[Org]",
               nvim_lsp = "[LSP]",
               luasnip = "[LuaSnip]",
               buffer = "[Buffer]",

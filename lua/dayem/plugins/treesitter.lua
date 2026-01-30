@@ -46,6 +46,7 @@ return {
                 "ron",
                 "php",
                 "blade",
+                "org",
             },
             auto_install = true,
             incremental_selection = {
