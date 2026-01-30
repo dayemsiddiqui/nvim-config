@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter" },
 		{ "nvim-telescope/telescope.nvim" },
-		{ "joaomsa/telescope-orgmode.nvim" },
 	},
 	event = "VeryLazy",
 	ft = { "org" },
@@ -48,11 +47,6 @@ return {
 			},
 		})
 
-		local ok, _ = pcall(require("telescope").load_extension, "orgmode")
-		if not ok then
-			vim.notify("Failed to load telescope-orgmode extension", vim.log.levels.WARN)
-		end
-
 		require("cmp").setup.filetype("org", {
 			sources = {
 				{ name = "orgmode" },
@@ -62,9 +56,12 @@ return {
 			},
 		})
 
+		local orgmode_telescope = require("dayem.utils.orgmode_telescope")
+
 		vim.keymap.set("n", "<leader>oc", "<cmd>lua require('orgmode').action('capture.prompt')<CR>", { desc = "Org Capture" })
-		vim.keymap.set("n", "<leader>oh", "<cmd>Telescope orgmode search_headings<CR>", { desc = "Search Org Headings" })
-		vim.keymap.set("n", "<leader>ol", "<cmd>Telescope orgmode insert_link<CR>", { desc = "Insert Org Link" })
+		vim.keymap.set("n", "<leader>oh", orgmode_telescope.search_headings, { desc = "Search Org Headings" })
+		vim.keymap.set("n", "<leader>ol", "<cmd>lua require('orgmode').action('org_mappings.insert_link')<CR>", { desc = "Insert Org Link" })
+		vim.keymap.set("n", "<leader>or", orgmode_telescope.refile_heading, { desc = "Refile Org Heading" })
 		vim.keymap.set("n", "<leader>ona", function()
 			local bufnr = vim.api.nvim_get_current_buf()
 			local line_num = vim.api.nvim_win_get_cursor(0)[1]
