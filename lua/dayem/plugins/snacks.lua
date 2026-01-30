@@ -12,6 +12,10 @@ return {
                         n_esc = { "<C-c>", { "cmp_close", "cancel" }, mode = "n", expr = true },
                         i_esc = { "<C-c>", { "cmp_close", "stopinsert" }, mode = "i", expr = true },
                     },
+                    wo = {
+                        winblend = 0,
+                        winhighlight = "Normal:SnacksInput,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle",
+                    },
                 }
             },
             -- Snacks Modules
@@ -142,6 +146,14 @@ return {
                     snacks.config.input.enabled = true
                     snacks.config.picker.enabled = true
                     snacks.config.dashboard.enabled = true
+
+                    local ok, colors = pcall(require, "catppuccin.palettes")
+                    if ok then
+                        local palette = colors.get_palette()
+                        vim.api.nvim_set_hl(0, "SnacksInput", { fg = palette.text, bg = palette.mantle })
+                        vim.api.nvim_set_hl(0, "SnacksInputBorder", { fg = palette.blue, bg = palette.mantle })
+                        vim.api.nvim_set_hl(0, "SnacksInputTitle", { fg = palette.blue, bg = palette.mantle })
+                    end
                 end,
             })
 

@@ -66,6 +66,19 @@ return {
           ["@lsp.mod.static"] = { style = { "bold" } },
 
           ["LspInlayHint"] = { fg = colors.overlay0, bg = colors.surface0 },
+
+          OrgAgendaScheduled = { fg = colors.text },
+          OrgAgendaDeadline = { fg = colors.text },
+          Normal = { fg = colors.text },
+          NormalFloat = { fg = colors.text, bg = colors.mantle },
+          FloatBorder = { fg = colors.blue, bg = colors.mantle },
+          Pmenu = { fg = colors.text, bg = colors.mantle },
+
+          SnacksInput = { fg = colors.text, bg = colors.mantle },
+          SnacksInputBorder = { fg = colors.blue, bg = colors.mantle },
+          SnacksInputTitle = { fg = colors.blue, bg = colors.mantle },
+          SnacksInputIcon = { fg = colors.blue, bg = colors.mantle },
+          SnacksInputIconBlank = { fg = colors.blue, bg = colors.mantle },
         }
       end,
     })
