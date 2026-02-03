@@ -224,12 +224,32 @@ return {
             kubernetes = "/*.yaml",
             ["http://json.schemastore.org/kustomization"] = "kustomization.yaml",
             ["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*",
+            ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"] = {
+              "openapi.yaml",
+              "openapi.yml",
+              "**/openapi/*.yaml",
+              "**/openapi/*.yml",
+            },
+            ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = {
+              "openapi3.yaml",
+              "openapi3.yml",
+              "**/openapi3/*.yaml",
+              "**/openapi3/*.yml",
+            },
+            ["https://json.schemastore.org/swagger-2.0.json"] = {
+              "swagger.yaml",
+              "swagger.yml",
+            },
           },
           format = {
             enable = true,
           },
           validate = true,
           completion = true,
+          schemaStore = {
+            enable = true,
+            url = "https://www.schemastore.org/api/json/catalog.json",
+          },
         },
       },
     })
