@@ -16,9 +16,13 @@ return {
 			org_startup_indented = true,
 			win_split_mode = 'float',
 			win_border = 'rounded',
-			org_agenda_templates = {
+			org_capture_templates = {
 				t = { description = "Task", template = "* TODO %?\n  %u" },
 				n = { description = "Note", template = "* %?\n  %u" },
+				r = "Recurring",
+				rd = { description = "Daily", template = "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a> +1d>" },
+				rw = { description = "Weekly", template = "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a> +1w>" },
+				rm = { description = "Monthly", template = "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a> +1m>" },
 			},
 			mappings = {
 				org = {
