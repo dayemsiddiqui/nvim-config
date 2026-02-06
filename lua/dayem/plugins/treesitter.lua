@@ -4,7 +4,7 @@ return {
         build = ":TSUpdate",
         event = { "BufReadPost", "BufNewFile" },
         config = function()
-            require("nvim-treesitter.config").setup({
+            require("nvim-treesitter.configs").setup({
                 highlight = {
                     enable = true,
                     disable = function(lang, buf)
@@ -47,6 +47,9 @@ return {
                 "php",
                 "blade",
                 "org",
+                "vue",
+                "astro",
+                "templ",
             },
             auto_install = true,
             incremental_selection = {
@@ -63,13 +66,13 @@ return {
     {
         "windwp/nvim-ts-autotag",
         enabled = true,
-        ft = { "html", "xml", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "php", "blade" },
+        ft = { "html", "xml", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "php", "blade", "vue", "astro", "markdown", "templ", "gohtml", "gohtmltmpl" },
         config = function()
             require("nvim-ts-autotag").setup({
                 opts = {
                     enable_close = true,
                     enable_rename = true,
-                    enable_close_on_slash = false,
+                    enable_close_on_slash = true,
                 },
                 per_filetype = {
                     ["html"] = {
