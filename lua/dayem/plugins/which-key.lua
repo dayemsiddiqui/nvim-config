@@ -112,6 +112,10 @@ return {
       { "<leader>ra", desc = "Smart Run (Auto-detect)" },
       { "<leader>rt", desc = "Toggle Test/Source File" },
 
+      { "<leader>w", group = "Writing" },
+      { "<leader>wz", desc = "Zen Mode" },
+      { "<leader>wt", desc = "Twilight" },
+
       { "<leader>Y", desc = "Yazi File Manager" },
 
       { "g", group = "Go to" },

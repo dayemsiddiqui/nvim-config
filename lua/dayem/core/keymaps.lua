@@ -47,6 +47,10 @@ vim.keymap.set("n", "<leader>tn", "<cmd>BufferLineCycleNext<CR>") -- go to next
 vim.keymap.set("n", "<leader>tp", "<cmd>BufferLineCyclePrev<CR>") -- go to pre
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") -- open current file in new tab
 
+
+-- Save shortcut
+vim.keymap.set("n", "<D-s>", ":w<CR>", { desc = "Save file" })
+
 -- split
 vim.keymap.set("n", "<leader>sv", function()
   local current_buf = vim.api.nvim_get_current_buf()
