@@ -55,3 +55,29 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "SnacksInputTitle", { fg = colors.blue, bg = colors.mantle })
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local lang = vim.bo[bufnr].filetype
+
+    local has_parser = pcall(vim.treesitter.get_parser, bufnr, lang)
+    if not has_parser then
+      return
+    end
+
+    local max_filesize = 100 * 1024
+    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+    if ok and stats and stats.size > max_filesize then
+      return
+    end
+
+    vim.treesitter.start(bufnr, lang)
+
+    vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  end,
+})

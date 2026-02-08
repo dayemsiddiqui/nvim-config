@@ -4,20 +4,11 @@ return {
         build = ":TSUpdate",
         event = { "BufReadPost", "BufNewFile" },
         config = function()
-            require("nvim-treesitter.configs").setup({
-                highlight = {
-                    enable = true,
-                    disable = function(lang, buf)
-                        local max_filesize = 100 * 1024
-                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                        if ok and stats and stats.size > max_filesize then
-                            return true
-                        end
-                    end,
-                    additional_vim_regex_highlighting = false,
-                },
-                indent = { enable = true },
-                ensure_installed = {
+            require("nvim-treesitter").setup({
+                install_dir = vim.fn.stdpath("data") .. "/site",
+            })
+
+            require("nvim-treesitter").install({
                 "json",
                 "javascript",
                 "typescript",
@@ -50,17 +41,7 @@ return {
                 "vue",
                 "astro",
                 "templ",
-            },
-            auto_install = true,
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<C-space>",
-                    node_incremental = "<C-space>",
-                    node_decremental = "<C-backspace>",
-                },
-            },
-        })
+            })
         end,
     },
     {
