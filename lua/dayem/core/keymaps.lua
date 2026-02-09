@@ -43,6 +43,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- tab stuff
 vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>") -- open new tab
 vim.keymap.set("n", "<leader>tx", "<cmd>bdelete<CR>") -- close current tab
+vim.keymap.set("n", "<leader>tX", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all buffers" })
 vim.keymap.set("n", "<leader>tn", "<cmd>BufferLineCycleNext<CR>") -- go to next
 vim.keymap.set("n", "<leader>tp", "<cmd>BufferLineCyclePrev<CR>") -- go to pre
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") -- open current file in new tab

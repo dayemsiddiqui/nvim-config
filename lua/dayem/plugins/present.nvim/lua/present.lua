@@ -16,7 +16,7 @@ local parse_slides = function(lines)
 
     local separator = "^#"
     for i, line in ipairs(lines) do
-        print(line, "find: ", line:find(separator), "|")
+       -- print(line, "find: ", line:find(separator), "|")
     end
     return slides
 end
