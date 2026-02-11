@@ -21,7 +21,7 @@ return {
           prompt = "Switch Project",
         }, function(selected, idx)
           if idx and project_items[idx] then
-            projects.switch_to_project(project_items[idx].path)
+            projects.switch_to_project(project_items[idx].name, project_items[idx].path)
           end
         end)
       end,

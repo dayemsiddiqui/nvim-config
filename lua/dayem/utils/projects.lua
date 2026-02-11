@@ -150,7 +150,7 @@ function M.get_projects()
   return items
 end
 
-function M.switch_to_project(path)
+function M.switch_to_project(name, path)
   local expanded_path = vim.fn.expand(path)
 
   if vim.fn.isdirectory(expanded_path) == 0 then
@@ -158,49 +158,13 @@ function M.switch_to_project(path)
     return
   end
 
-  local modified_buffers = {}
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_option(buf, "modified") then
-      local bufname = vim.api.nvim_buf_get_name(buf)
-      if bufname ~= "" then
-        table.insert(modified_buffers, bufname)
-      end
-    end
-  end
+  local cmd = string.format(
+    [[hs -c "openProject({ name='%s', path='%s' })"]],
+    name:gsub("'", "\\'"),
+    expanded_path:gsub("'", "\\'")
+  )
 
-  if #modified_buffers > 0 then
-    local response = vim.fn.confirm(
-      "You have unsaved changes. Continue switching projects?",
-      "&Yes\n&No",
-      2
-    )
-    if response ~= 1 then
-      return
-    end
-  end
-
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(buf) then
-      local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
-      if buftype == "" then
-        vim.api.nvim_buf_delete(buf, { force = true })
-      end
-    end
-  end
-
-  vim.cmd("cd " .. vim.fn.fnameescape(expanded_path))
-
-  local restore_success = pcall(function()
-    vim.cmd("SessionRestore")
-  end)
-
-  if not restore_success then
-    vim.schedule(function()
-      vim.cmd("Neotree show")
-    end)
-  end
-
-  vim.notify("Switched to project: " .. expanded_path, vim.log.levels.INFO)
+  vim.fn.jobstart(cmd, { detach = true })
 end
 
 return M
